@@ -1,0 +1,5 @@
+%h1 Pages#index
+= link_to 'New Page', new_page_path
+
+- @pages.each do |page|
+  = link_to page.title, page_path(page)
