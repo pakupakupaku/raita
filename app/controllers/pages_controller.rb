@@ -6,4 +6,20 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
   end
+
+  def create
+    @page = Page.new(page_params)
+    if @page.save
+      redirect_to page_path(@page)
+    else
+      @errors = @page.errors.full_messages
+      render :new
+    end
+  end
+
+  private
+
+  def page_params
+    params.require(:page).permit(:title, :body)
+  end
 end
