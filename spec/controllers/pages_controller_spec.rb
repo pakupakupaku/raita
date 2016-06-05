@@ -60,4 +60,14 @@ RSpec.describe PagesController, type: :controller do
       end
     end
   end
+
+  describe "GET index" do
+    let!(:page) { create :page }
+
+    it "returns pages" do
+      get :index
+      expect(response).to have_http_status(:success)
+      expect(assigns(:pages)).to eq [page]
+    end
+  end
 end

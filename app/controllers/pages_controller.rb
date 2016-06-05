@@ -17,6 +17,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def index
+    @pages = Page.order(updated_at: :desc)
+  end
+
   private
 
   def page_params
