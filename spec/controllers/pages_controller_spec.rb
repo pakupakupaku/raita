@@ -11,7 +11,7 @@ RSpec.describe PagesController, type: :controller do
     let(:page) { create :page }
 
     it "returns http success" do
-      get :show, id: page.id
+      get :show, params: { id: page.id }
       expect(response).to have_http_status(:success)
       expect(assigns(:page)).to eq page
     end
@@ -36,7 +36,7 @@ RSpec.describe PagesController, type: :controller do
     end
 
     it "creates a post and redirect" do
-      post :create, params
+      post :create, params: params
       expect(response).to have_http_status(:redirect)
 
       page = Page.last
@@ -52,7 +52,7 @@ RSpec.describe PagesController, type: :controller do
       end
 
       it 'renders validations errors' do
-        post :create, params
+        post :create, params: params
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:new)
         expect(assigns(:page)).to_not be_persisted
